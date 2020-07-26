@@ -60,7 +60,11 @@ def main(args=None):
         # TODO: Handle other version instructions
         if '==' not in requirement:
             print('Error: Can only work with pinned requirements for now.')
-        name, version = requirement.split('==')
+        name_version = requirement.split('==')
+        if len(name_version) == 2:
+            name, version = name_version
+        else:
+            name, version = requirement.split('>=')
         upgrades.append(name)
 
     # Edge case
